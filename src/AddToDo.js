@@ -1,15 +1,21 @@
 // Libraries
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 export default function AddToDo({ onClick }) {
   // useState function for updating the inputValue
   // (what the user inputs in the add to do bar)
   const [inputValue, setInputValue] = useState("");
 
+  // input element ref
+  const inputRef = useRef(null);
+  // inputRef = { current: null };
+
   // handleClick function for when the user presses Submit, one action happens:
   // 1: Updates inputValue when user clicks submit.
   function handleClick() {
     onClick(inputValue);
+    setInputValue("");
+    inputRef.current.focus();
   }
 
   return (
@@ -22,12 +28,10 @@ export default function AddToDo({ onClick }) {
         // COME BACK TO THIS AND ADD MORE RE e.target.value
         onChange={(e) => setInputValue(e.target.value)}
         placeholder="Add to do"
+        ref={inputRef}
+        value={inputValue}
       />
       <button onClick={handleClick}>Submit</button>
     </div>
   );
 }
-
-// need an input box
-// submit button
-// setInputValue(inputValue)
