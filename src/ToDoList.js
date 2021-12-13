@@ -1,9 +1,12 @@
-// Library
+// Libraries
 import React from "react";
-// Component
+// Components
 import ToDoItem from "./ToDoItem";
+// Context
+import { useToDoListContext } from "./context";
 
-export default function ToDoList({ toDoList }) {
+export default function ToDoList({ ...props }) {
+  const { toDoList } = useToDoListContext();
   // The map() method creates a new array populated with the results of calling a
   // provided function on every element in the calling array
   // Here we are mapping the array toDoList, creating a new array and returns
@@ -12,6 +15,3 @@ export default function ToDoList({ toDoList }) {
     <ToDoItem key={index} toDoItem={toDoItem} />
   ));
 }
-
-// what are our to dos
-// how do we store them
